@@ -4,7 +4,7 @@
 
 namespace SpriteGameToolkit
 {
-	class PUBLIC_API Color
+	class Color
 	{
 	public:
 		byte R, G, B;

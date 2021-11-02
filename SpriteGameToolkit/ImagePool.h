@@ -7,7 +7,7 @@ namespace SpriteGameToolkit
 {
 	class Image;
 
-	class PUBLIC_API ImagePool
+	class ImagePool
 	{
 	public:
 		ImagePool();

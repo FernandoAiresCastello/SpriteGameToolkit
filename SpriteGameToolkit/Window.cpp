@@ -4,6 +4,8 @@
 #include "Tileset.h"
 #include "TiledSprite.h"
 #include "ImageSprite.h"
+#include "Scene.h"
+#include "SceneViewport.h"
 
 namespace SpriteGameToolkit
 {
@@ -19,6 +21,8 @@ namespace SpriteGameToolkit
 
 	Window::Window(int screenWidth, int screenHeight, int windowWidth, int windowHeight)
 	{
+		Open = false;
+
 		SDL_Init(SDL_INIT_EVERYTHING);
 		SDL_SetHint(SDL_HINT_RENDER_DRIVER, "direct3d");
 		SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
@@ -38,6 +42,7 @@ namespace SpriteGameToolkit
 		SDL_SetWindowPosition(Wnd, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 		SDL_RaiseWindow(Wnd);
 
+		Open = true;
 		BackColor = 0x000000;
 		Clear();
 		Update();
@@ -45,10 +50,21 @@ namespace SpriteGameToolkit
 
 	Window::~Window()
 	{
+		Close();
+	}
+
+	void Window::Close()
+	{
+		Open = false;
 		SDL_DestroyTexture(ScreenTex);
 		SDL_DestroyRenderer(Renderer);
 		SDL_DestroyWindow(Wnd);
 		SDL_Quit();
+	}
+
+	bool Window::IsClosed()
+	{
+		return !Open;
 	}
 
 	void Window::Update()
@@ -91,6 +107,34 @@ namespace SpriteGameToolkit
 		Uint32 isFullscreen = SDL_GetWindowFlags(Wnd) & fullscreenFlag;
 		SDL_SetWindowFullscreen(Wnd, isFullscreen ? 0 : fullscreenFlag);
 		SDL_ShowCursor(isFullscreen);
+	}
+
+	bool Window::ProcessEvents()
+	{
+		SDL_Event e = { 0 };
+		SDL_PollEvent(&e);
+		return ProcessEvents(e);
+	}
+
+	bool Window::ProcessEvents(SDL_Event& e)
+	{
+		if (e.type == SDL_QUIT) {
+			Close();
+			return true;
+		}
+		else if (e.type == SDL_KEYDOWN) {
+			SDL_Keycode key = e.key.keysym.sym;
+			const bool alt = SDL_GetModState() & KMOD_ALT;
+			if (key == SDLK_ESCAPE) {
+				Close();
+				return true;
+			}
+			else if (key == SDLK_RETURN && alt) {
+				ToggleFullscreen();
+				return true;
+			}
+		}
+		return false;
 	}
 
 	void Window::DrawImage(Image* img)
@@ -152,5 +196,9 @@ namespace SpriteGameToolkit
 			return;
 
 		DrawImage(sprite->GetFrame(0), sprite->GetX(), sprite->GetY());
+	}
+
+	void Window::DrawScene(SceneViewport* view)
+	{
 	}
 }

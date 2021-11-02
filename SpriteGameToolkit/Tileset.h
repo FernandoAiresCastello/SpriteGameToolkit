@@ -14,7 +14,7 @@ namespace SpriteGameToolkit
 		int Y;
 	};
 
-	class PUBLIC_API Tileset
+	class Tileset
 	{
 	public:
 		Tileset(Image* image, int tileWidth, int tileHeight);

@@ -11,8 +11,6 @@ int main(int argc, char** args)
 	imgpool.SetTransparencyKey(0xff00ff);
 	imgpool.Load("sky", "C:\\Fernando\\Temp\\sky.bmp");
 	imgpool.Load("smiley", "C:\\Fernando\\Temp\\smiley.bmp");
-	imgpool.Load("man1", "C:\\Fernando\\Temp\\man1.bmp");
-	imgpool.Load("man2", "C:\\Fernando\\Temp\\man2.bmp");
 
 	Tileset* tiles = new Tileset(imgpool.Get("smiley"), 16, 16);
 	Image* sky = imgpool.Get("sky");
@@ -21,13 +19,6 @@ int main(int argc, char** args)
 	player->SetPosition(50, 100, 0);
 	TiledSprite* enemy = new TiledSprite(tiles, 1);
 	enemy->SetPosition(120, 120, 0);
-	
-	/*
-	ImageSprite* player = new ImageSprite(imgpool.Get("man1"));
-	player->SetPosition(50, 100, 0);
-	ImageSprite* enemy = new ImageSprite(imgpool.Get("man2"));
-	enemy->SetPosition(120, 120, 0);
-	*/
 	
 	const int moveSpeed = 1;
 	bool running = true;
@@ -49,41 +40,35 @@ int main(int argc, char** args)
 
 		SDL_Event e = { 0 };
 		SDL_PollEvent(&e);
-		const Uint8* key = SDL_GetKeyboardState(NULL);
+		const Uint8* keystate = SDL_GetKeyboardState(NULL);
 		const bool alt = SDL_GetModState() & KMOD_ALT;
 		const bool ctrl = SDL_GetModState() & KMOD_CTRL;
 
-		if (e.type == SDL_QUIT) {
+		bool glEvent = wnd->ProcessEvents(e);
+		if (wnd->IsClosed()) {
 			running = false;
+			break;
 		}
-		else if (e.type == SDL_KEYDOWN) {
-			SDL_Keycode key = e.key.keysym.sym;
-			if (key == SDLK_ESCAPE) {
-				running = false;
+		if (!glEvent) {
+			if (e.type == SDL_KEYDOWN) {
+				SDL_Keycode keycode = e.key.keysym.sym;
+				if (keycode == SDLK_RETURN) {
+					player->SetVisible(!player->IsVisible());
+				}
 			}
-			else if (key == SDLK_RETURN && alt) {
-				wnd->ToggleFullscreen();
-			}
-			else if (key == SDLK_RETURN) {
-				player->SetVisible(!player->IsVisible());
-			}
-		}
 
-		if (key[SDL_SCANCODE_RIGHT]) {
-			//player->Move(1, 0, moveSpeed);
-			player->MoveTiled(1, 0);
-		}
-		if (key[SDL_SCANCODE_LEFT]) {
-			//player->Move(-1, 0, moveSpeed);
-			player->MoveTiled(-1, 0);
-		}
-		if (key[SDL_SCANCODE_DOWN]) {
-			//player->Move(0, 1, moveSpeed);
-			player->MoveTiled(0, 1);
-		}
-		if (key[SDL_SCANCODE_UP]) {
-			//player->Move(0, -1, moveSpeed);
-			player->MoveTiled(0, -1);
+			if (keystate[SDL_SCANCODE_RIGHT]) {
+				player->Move(1, 0, moveSpeed);
+			}
+			if (keystate[SDL_SCANCODE_LEFT]) {
+				player->Move(-1, 0, moveSpeed);
+			}
+			if (keystate[SDL_SCANCODE_DOWN]) {
+				player->Move(0, 1, moveSpeed);
+			}
+			if (keystate[SDL_SCANCODE_UP]) {
+				player->Move(0, -1, moveSpeed);
+			}
 		}
 	}
 

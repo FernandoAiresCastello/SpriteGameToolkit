@@ -5,7 +5,7 @@
 
 namespace SpriteGameToolkit
 {
-	class PUBLIC_API Image
+	class Image
 	{
 	public:
 		Image(std::string file);

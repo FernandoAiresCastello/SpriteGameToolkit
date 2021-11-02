@@ -8,8 +8,10 @@ namespace SpriteGameToolkit
 	class Tileset;
 	class TiledSprite;
 	class ImageSprite;
+	class Scene;
+	class SceneViewport;
 
-	class PUBLIC_API Window
+	class Window
 	{
 	public:
 		Window(int width, int height);
@@ -17,12 +19,16 @@ namespace SpriteGameToolkit
 		Window(int screenWidth, int screenHeight, int windowWidth, int windowHeight);
 		~Window();
 
+		void Close();
+		bool IsClosed();
 		void Update();
 		void Clear();
 		void SetBackColor(int color);
 		int GetBackColor();
 		void SetFullscreen(bool full);
 		void ToggleFullscreen();
+		bool ProcessEvents();
+		bool ProcessEvents(SDL_Event& e);
 		void DrawImage(Image* img);
 		void DrawImage(Image* img, int x, int y);
 		void DrawImage(Image* img, int x, int y, int zoom);
@@ -30,12 +36,14 @@ namespace SpriteGameToolkit
 		void DrawTile(Tileset* tiles, int index, int x, int y);
 		void DrawSprite(TiledSprite* sprite);
 		void DrawSprite(ImageSprite* sprite);
+		void DrawScene(SceneViewport* view);
 
 	private:
 		SDL_Window* Wnd;
 		SDL_Renderer* Renderer;
 		SDL_Texture* ScreenTex;
 
+		bool Open;
 		int BackColor;
 	};
 }

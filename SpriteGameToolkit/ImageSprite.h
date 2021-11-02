@@ -7,7 +7,7 @@ namespace SpriteGameToolkit
 {
 	class Image;
 
-	class PUBLIC_API ImageSprite : public SpriteBase
+	class ImageSprite : public SpriteBase
 	{
 	public:
 		ImageSprite(Image* image);

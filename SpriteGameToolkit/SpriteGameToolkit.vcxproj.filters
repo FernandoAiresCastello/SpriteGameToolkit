@@ -25,6 +25,12 @@
     <ClCompile Include="ImagePool.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneViewport.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color.h">
@@ -57,6 +63,12 @@
     <ClInclude Include="ImagePool.h">
       <Filter>Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneViewport.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphics">
@@ -64,6 +76,9 @@
     </Filter>
     <Filter Include="Global">
       <UniqueIdentifier>{58fd8719-09aa-4252-9cbe-2f49a9a59c65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{9465f472-b0c1-4312-b18e-e6f994505d3e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

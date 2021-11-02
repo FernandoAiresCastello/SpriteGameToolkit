@@ -10,3 +10,5 @@
 #include "SpriteBase.h"
 #include "TiledSprite.h"
 #include "ImageSprite.h"
+#include "Scene.h"
+#include "SceneViewport.h"

@@ -80,9 +80,9 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>$(SolutionDir)Builds\$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>C:\Fernando\Proj\SpriteGameToolkit\Builds;C:\Fernando\Lib\SDL2-2.0.8\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SpriteGameToolkit.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)Debug\$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>C:\Fernando\Proj\CppUtils\Debug;C:\Fernando\Proj\SpriteGameToolkit\Debug;C:\Fernando\Lib\SDL2-2.0.8\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;CppUtils.lib;SpriteGameToolkit.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(SolutionDir)Builds\$(TargetName).pdb</ProgramDatabaseFile>
       <ProfileGuidedDatabase>$(SolutionDir)Builds\$(TargetName).pgd</ProfileGuidedDatabase>
     </Link>

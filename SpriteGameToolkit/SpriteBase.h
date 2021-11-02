@@ -3,7 +3,7 @@
 
 namespace SpriteGameToolkit
 {
-	class PUBLIC_API SpriteBase
+	class SpriteBase
 	{
 	public:
 		SpriteBase();

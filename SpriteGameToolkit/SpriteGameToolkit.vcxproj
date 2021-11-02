@@ -26,7 +26,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -79,21 +79,24 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Fernando\Lib\SDL2-2.0.8\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Fernando\Proj\CppUtils\CppUtils;C:\Fernando\Lib\SDL2-2.0.8\include</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;DLLEXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(SolutionDir)Builds\$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>C:\Fernando\Lib\SDL2-2.0.8\lib\x86;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Fernando\Proj\CppUtils\Debug;C:\Fernando\Lib\SDL2-2.0.8\lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>CppUtils.lib;SDL2.lib;SDL2main.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(SolutionDir)Builds\$(TargetName).pdb</ProgramDatabaseFile>
       <ProfileGuidedDatabase>$(SolutionDir)Builds\$(TargetName).pgd</ProfileGuidedDatabase>
       <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
       <ImportLibrary>$(SolutionDir)Builds\$(TargetName).lib</ImportLibrary>
     </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -142,6 +145,8 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImagePool.h" />
     <ClInclude Include="ImageSprite.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneViewport.h" />
     <ClInclude Include="SpriteBase.h" />
     <ClInclude Include="TiledSprite.h" />
     <ClInclude Include="SpriteGameToolkit.h" />
@@ -153,6 +158,8 @@
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImagePool.cpp" />
     <ClCompile Include="ImageSprite.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneViewport.cpp" />
     <ClCompile Include="SpriteBase.cpp" />
     <ClCompile Include="TiledSprite.cpp" />
     <ClCompile Include="Tileset.cpp" />

@@ -7,7 +7,7 @@ namespace SpriteGameToolkit
 {
 	class Tileset;
 
-	class PUBLIC_API TiledSprite : public SpriteBase
+	class TiledSprite : public SpriteBase
 	{
 	public:
 		TiledSprite(class Tileset* tileset);

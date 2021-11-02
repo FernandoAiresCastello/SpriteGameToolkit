@@ -1,4 +1,6 @@
 #include "Image.h"
+#include "CppUtils.h"
+using namespace CppUtils;
 
 namespace SpriteGameToolkit
 {
@@ -24,6 +26,11 @@ namespace SpriteGameToolkit
 
 	void Image::Init(std::string file, bool transparent, int transparencyKey)
 	{
+		if (!File::Exists(file)) {
+			MsgBox::Error("File not found", String::Format("Image file \"%s\" not found", file.c_str()));
+			return;
+		}
+
 		Sfc = SDL_LoadBMP(file.c_str());
 		Tex = NULL;
 		Width = Sfc->w;
