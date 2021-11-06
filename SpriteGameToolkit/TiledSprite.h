@@ -19,6 +19,8 @@ namespace SpriteGameToolkit
 		int GetFrame(int frame);
 		int GetFrameCount();
 		void MoveTiled(int dx, int dy);
+		
+		virtual void StepAnimation();
 	
 	private:
 		class Tileset* Tileset;

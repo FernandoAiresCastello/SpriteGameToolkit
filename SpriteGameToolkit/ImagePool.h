@@ -13,11 +13,13 @@ namespace SpriteGameToolkit
 		ImagePool();
 		~ImagePool();
 
+		void SetBasePath(std::string path);
 		void Load(std::string id, std::string file);
 		Image* Get(std::string id);
 		void SetTransparencyKey(int color);
 
 	private:
+		std::string BasePath;
 		std::map<std::string, Image*> Images;
 		int TransparencyKey;
 	};

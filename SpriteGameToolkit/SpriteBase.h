@@ -3,6 +3,8 @@
 
 namespace SpriteGameToolkit
 {
+	class Image;
+
 	class SpriteBase
 	{
 	public:
@@ -22,10 +24,13 @@ namespace SpriteGameToolkit
 		void SetAnimated(bool animated);
 		bool IsAnimated();
 		void Move(int dx, int dy);
-		void Move(int dx, int dy, int speed);
+		void Move(int dx, int dy, int steps);
 		int GetBoundingBoxWidth();
 		int GetBoundingBoxHeight();
 		bool CollidesWith(SpriteBase* other);
+		Image* GetCurrentFrame();
+		
+		virtual void StepAnimation() = 0;
 
 	protected:
 		int X;
@@ -35,5 +40,7 @@ namespace SpriteGameToolkit
 		bool Animated;
 		int BoundingBoxWidth;
 		int BoundingBoxHeight;
+		int CurrentFrameIndex;
+		Image* CurrentFrame;
 	};
 }

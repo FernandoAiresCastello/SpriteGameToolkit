@@ -9,8 +9,9 @@ int main(int argc, char** args)
 
 	ImagePool imgpool;
 	imgpool.SetTransparencyKey(0xff00ff);
-	imgpool.Load("sky", "C:\\Fernando\\Temp\\sky.bmp");
-	imgpool.Load("smiley", "C:\\Fernando\\Temp\\smiley.bmp");
+	imgpool.SetBasePath("C:/Fernando/Temp");
+	imgpool.Load("sky", "sky.bmp");
+	imgpool.Load("smiley", "smiley.bmp");
 
 	Tileset* tiles = new Tileset(imgpool.Get("smiley"), 16, 16);
 	Image* sky = imgpool.Get("sky");
@@ -20,9 +21,7 @@ int main(int argc, char** args)
 	TiledSprite* enemy = new TiledSprite(tiles, 1);
 	enemy->SetPosition(120, 120, 0);
 	
-	const int moveSpeed = 1;
 	bool running = true;
-
 	while (running) {
 
 		wnd->Clear();
@@ -56,18 +55,17 @@ int main(int argc, char** args)
 					player->SetVisible(!player->IsVisible());
 				}
 			}
-
 			if (keystate[SDL_SCANCODE_RIGHT]) {
-				player->Move(1, 0, moveSpeed);
+				player->Move(1, 0);
 			}
 			if (keystate[SDL_SCANCODE_LEFT]) {
-				player->Move(-1, 0, moveSpeed);
+				player->Move(-1, 0);
 			}
 			if (keystate[SDL_SCANCODE_DOWN]) {
-				player->Move(0, 1, moveSpeed);
+				player->Move(0, 1);
 			}
 			if (keystate[SDL_SCANCODE_UP]) {
-				player->Move(0, -1, moveSpeed);
+				player->Move(0, -1);
 			}
 		}
 	}

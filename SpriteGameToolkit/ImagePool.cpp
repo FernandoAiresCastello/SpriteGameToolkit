@@ -1,10 +1,13 @@
 #include "ImagePool.h"
 #include "Image.h"
+#include "CppUtils.h"
+using namespace CppUtils;
 
 namespace SpriteGameToolkit
 {
 	ImagePool::ImagePool()
 	{
+		BasePath = "";
 		TransparencyKey = NULL;
 	}
 
@@ -19,8 +22,19 @@ namespace SpriteGameToolkit
 		Images.clear();
 	}
 
+	void ImagePool::SetBasePath(std::string path)
+	{
+		if (!String::EndsWith(path, "\\") && !String::EndsWith(path, "/"))
+			path += "\\";
+
+		BasePath = path;
+	}
+
 	void ImagePool::Load(std::string id, std::string file)
 	{
+		if (BasePath != "")
+			file = BasePath + file;
+
 		Image* image = TransparencyKey != NULL ? 
 			new Image(file, TransparencyKey) : new Image(file);
 

@@ -44,4 +44,13 @@ namespace SpriteGameToolkit
 	{
 		Move(dx * BoundingBoxWidth, dy * BoundingBoxHeight);
 	}
+
+	void TiledSprite::StepAnimation()
+	{
+		CurrentFrameIndex++;
+		if (CurrentFrameIndex >= Frames.size())
+			CurrentFrameIndex = 0;
+
+		CurrentFrame = Frames[CurrentFrameIndex];
+	}
 }

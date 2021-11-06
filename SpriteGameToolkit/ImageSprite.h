@@ -17,6 +17,8 @@ namespace SpriteGameToolkit
 		Image* GetFrame(int frame);
 		int GetFrameCount();
 
+		virtual void StepAnimation();
+
 	private:
 		std::vector<Image*> Frames;
 	};

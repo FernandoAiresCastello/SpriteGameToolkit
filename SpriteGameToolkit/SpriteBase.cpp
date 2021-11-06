@@ -1,4 +1,5 @@
 #include "SpriteBase.h"
+#include "Image.h"
 
 namespace SpriteGameToolkit
 {
@@ -10,6 +11,8 @@ namespace SpriteGameToolkit
 		Visible = true;
 		BoundingBoxWidth = 0;
 		BoundingBoxHeight = 0;
+		CurrentFrameIndex = 0;
+		CurrentFrame = nullptr;
 	}
 
 	SpriteBase::~SpriteBase()
@@ -85,10 +88,10 @@ namespace SpriteGameToolkit
 		Y += dy;
 	}
 
-	void SpriteBase::Move(int dx, int dy, int speed)
+	void SpriteBase::Move(int dx, int dy, int steps)
 	{
-		X += dx * speed;
-		Y += dy * speed;
+		X += dx * steps;
+		Y += dy * steps;
 	}
 
 	int SpriteBase::GetBoundingBoxWidth()
@@ -108,5 +111,10 @@ namespace SpriteGameToolkit
 			Y > other->GetY() - BoundingBoxHeight &&
 			X < other->GetX() + other->GetBoundingBoxWidth() &&
 			Y < other->GetY() + other->GetBoundingBoxHeight();
+	}
+
+	Image* SpriteBase::GetCurrentFrame()
+	{
+		return CurrentFrame;
 	}
 }
